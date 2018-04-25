@@ -28,3 +28,4 @@
 - libraries & linker
 - assembly
 - static, const
+- new, delete

@@ -7,6 +7,10 @@
 
 /* Lataa headerit: iostream (EXTRA main.h) */
 
+#include "main.hpp"
+// #include <iostream>
+
+
 /* Tee luokka Vector3F jossa on       (EXTRA tee se tiedostoon main.h, jossa annat vain attribuuttien ja funktioiden prototyypit,
  * attribuutit: float x,y,z                  määritä funktiot kooditiedostossa main.cpp)
  * funktiot: 
@@ -17,11 +21,93 @@
  * - operator=(Vector3F), overloaded operator jolla asetetaan tämän olion x,y,z argumentit toisen olion kanssa samoiksi
  */
 
+//class Vector3F{
+
+
+/*public:
+	float x;
+	float y;
+	float z;
+	Vector3F(float x, float y, float z):
+		x(x), y(y), z(z) {}
+
+	Vector3F operator+(Vector3F vec)
+	{
+		Vector3F temp(x+vec.x, y+vec.y,z +vec.z);
+		return temp;
+	}
+	Vector3F operator-(Vector3F vec)
+	{
+		Vector3F temp(x-vec.x, y-vec.y, z-vec.z);
+		return temp;
+	}
+	Vector3F operator*(float scale)
+	{
+		Vector3F temp(x*scale, y*scale, z*scale);
+		return temp;
+
+	}
+
+	Vector3F operator=(Vector3F vec)
+	{
+		Vector3F temp(vec.x, vec.y, vec.z);
+		return temp;
+	}
+	
+
+
+};*/
+
+Vector3F::Vector3F(float x, float y, float z):
+x(x), y(y), z(z)
+{}
+
+Vector3F Vector3F::operator+(Vector3F vec)
+{
+	Vector3F temp(x+vec.x, y+vec.y,z +vec.z);
+	return temp;
+}
+
+Vector3F Vector3F::operator-(Vector3F vec)
+{
+	Vector3F temp(x-vec.x, y-vec.y, z-vec.z);
+	return temp;
+}
+
+Vector3F Vector3F::operator*(float scale)
+{
+	Vector3F temp(x*scale, y*scale, z*scale);
+	return temp;
+
+}
+
+Vector3F Vector3F::operator=(Vector3F vec)
+{
+	Vector3F temp(vec.x, vec.y, vec.z);
+	return temp;
+}
+
+
+void print_vector(Vector3F vec)
+{
+	std::cout << vec.x << " " << vec.y << " " << vec.z <<'\n' ;
+}
+
+Vector3F cross (Vector3F vec1, Vector3F vec2)
+{
+	Vector3F temp(
+		vec1.y*vec2.z-vec1.z*vec2.y, 
+		vec1.z*vec2.x-vec1.x*vec2.z,
+		vec1.x*vec2.y-vec1.y*vec2.x
+		);
+	return temp;
+}
+
 /* EXTRA: tee ristitulofunktio cross http://wikipedia.org/wiki/Cross_Product#Computing_the_cross_product */
 
 /* Tee funktio main jossa initialisoidaan kaksi Vector3F a,b instanssia ja annetaan niille käyttäjän valitsemat arvot (std::cin)
  * tulosta a,b x,y,z arvot
- * laske lasku ota_modulo (a+b)*(a.x*b.x+a.y*b.y+a.z*b.z) ja tulosta tuloksen x,y,z arvot
+ * laske lasku (a+b)*(a.x*b.x+a.y*b.y+a.z*b.z) ja tulosta tuloksen x,y,z arvot
  * EXTRA ota a,b välinen ristitulo ja tulosta arvot
  *
  * esimerkki oikeasta toiminnasta:
@@ -31,3 +117,26 @@
  * // tulostaisi:
  * // 7 6 5
  */
+
+
+
+
+
+int main()
+{
+	/*std::string i1, i2, i3;
+	std::cin >> i1 >> i2 >> i3;
+	std::cout << i1 << ", "
+		<< i2 << ", "
+		<< i3 << '\n';*/
+	float i, j, k;
+	/*std::cout << "kerro vektorin yksi koordinaatit";*/
+	std::cin >>i >>j >>k;
+	Vector3F a (i, j, k);
+	print_vector(a);
+	std::cin >>i >>j >>k;
+	Vector3F b (i, j, k);
+	print_vector(b);
+	print_vector((a+b)*(a.x*b.x+a.y*b.y+a.z*b.z));
+	print_vector(cross(a,b));
+};
